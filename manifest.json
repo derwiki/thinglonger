@@ -1,10 +1,12 @@
 {
   "name": "Remote Torrentify",
   "version": "1.0",
-  "background_page": "background.html",
   "permissions": [
     "tabs", "http://*/*"
   ],
+  "browser_action": {
+    "default_icon": "icon.png"
+  },
   "content_scripts": [
     {
       "matches": ["http://www.demonoid.me/files/*"],

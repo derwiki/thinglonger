@@ -1,3 +1,4 @@
+console.log('Executing remote_torrentify.js...');
 var torrent_prefix = "http://www.demonoid.me/files/details/"; //2616152/1073442/
 torrent_prefix = "/files/details/";
 var anchors = document.getElementsByTagName('a');
