@@ -1,0 +1,15 @@
+{
+  "name": "Remote Torrentify",
+  "version": "1.0",
+  "background_page": "background.html",
+  "permissions": [
+    "tabs", "http://*/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["http://www.demonoid.me/files/*"],
+      "js": ["remote_torrentify.js"],
+      "run_at": "document_end"
+    }
+  ]
+}
