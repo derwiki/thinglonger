@@ -4,12 +4,15 @@
 <script type="text/javascript" src="jquery.min.js"></script>
 <script type="text/javascript" src="jquery.base64.min.js"></script>
 <script type="text/javascript">
-    SERVER = "http://localhost:8080/rtorrent"
-    chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
-		if (request.torrent_data) {
-            $.post(SERVER, {'torrent_data': $.base64.encode(request.torrent_data)});
-		}
-    });
+  SERVER = "http://localhost:8080/rtorrent";
+  chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
+    if (request.torrent_data) {
+      $.post(SERVER, {
+        'torrent_data': $.base64.encode(request.torrent_data),
+        'torrent_filename': $.base64.encode(request.torrent_filename)
+      });
+    }
+  });
 
 </script>
 </head>

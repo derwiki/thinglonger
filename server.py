@@ -15,7 +15,8 @@ bottle.debug(True)
 @bottle.route('/rtorrent', method="POST")
 def rtorrent():
     torrent_data = bottle.request.POST.get('torrent_data')
-    with open('%s.torrent' % time.time(), 'w') as torrent:
+    torrent_filename = base64.b64decode(bottle.request.POST.get('torrent_filename')).replace(' ', '_')
+    with open('%s.torrent' % torrent_filename, 'w') as torrent:
         torrent.write(base64.b64decode(torrent_data))
     return dict(success=True)
 
