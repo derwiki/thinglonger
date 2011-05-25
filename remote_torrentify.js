@@ -1,5 +1,6 @@
 var torrentPrefix = "/files/download/";
 var SERVER = "http://localhost:8080";
+var LAST = -1;
 
 $("a[href^='" + torrentPrefix + "']").each(function(index, element) {
   $(element).click(function(ev) {
@@ -7,8 +8,7 @@ $("a[href^='" + torrentPrefix + "']").each(function(index, element) {
     var torrentUrl = ev.target.parentNode;
     console.log('Initiating remote download for: ' + torrentUrl);
     $.post(torrentUrl, function(data) {
-      ev.target.innerHTML = "success!";
-      console.log(data);
+      chrome.extension.sendRequest({'torrent_data' : data});
     });
   });
 });

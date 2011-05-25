@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="jquery.min.js"></script>
+<script type="text/javascript" src="jquery.base64.min.js"></script>
+<script type="text/javascript">
+    SERVER = "http://localhost:8080/rtorrent"
+    chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
+        $.post(SERVER, request.torrent_data);
+		if (request.torrent_data) {
+            $.post(SERVER, {test: 'test2'});
+            //$.post(SERVER, {'torrent_data': $.base64.encode(request.torrent_data)});
+		}
+    });
+
+</script>
+</head>
+</html>

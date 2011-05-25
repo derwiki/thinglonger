@@ -1,20 +1,23 @@
-import urllib
+from __future__ import with_statement
+
+import logging
 import sys
+import time
 
 import bottle
-from bottle import request
-from bottle import run
-from bottle import static_file
 
-LAST = -1
+log = logging.getLogger('rtorrent_servlet')
+log.setLevel(logging.DEBUG);
 
-@bottle.route('/')
+bottle.debug(True)
+
+@bottle.route('/rtorrent', method="POST")
 def rtorrent():
-    torrent_url = request.GET.get('rtorrent')
-    torrent_filename = torrent_url.split('/')[LAST]
-    urllib.urlretrieve(torrent_url, torrent_filename)
-    return torrent_filename
-
+    import ipdb; ipdb.set_trace()
+    torrent_data = bottle.request.POST.get('torrent_data')
+    with open('%s.torrent' % time.time(), 'w') as torrent:
+        torrent.write(torrent_data)
+    return dict(success=True)
 
 port = sys.argv[1] if len(sys.argv) > 1 else 8080
-run(host='0.0.0.0', port=port)
+bottle.run(host='0.0.0.0', port=port)
