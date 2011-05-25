@@ -1,6 +1,4 @@
 var torrentPrefix = "/files/download/";
-var SERVER = "http://localhost:8080";
-var LAST = -1;
 
 $("a[href^='" + torrentPrefix + "']").each(function(index, element) {
   $(element).click(function(ev) {
