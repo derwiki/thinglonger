@@ -22,4 +22,6 @@ def rtorrent():
     return dict(success=True)
 
 port = sys.argv[1] if len(sys.argv) > 1 else 8080
-bottle.run(host='0.0.0.0', port=port)
+app = bottle.app()
+app.catchall = False
+bottle.run(app=app, host='0.0.0.0', port=port)

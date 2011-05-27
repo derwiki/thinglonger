@@ -13,6 +13,7 @@
       "matches": ["http://www.demonoid.me/files/*"],
       "js": [
         "jquery.min.js",
+        "jquery.base64.min.js",
         "remote_torrentify.js"
       ],
       "run_at": "document_end"
