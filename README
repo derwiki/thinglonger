@@ -1,3 +1,23 @@
-looks for http://www.demonoid.me/files/download/1617530/536721/ style links
+Thinglonger
+-----------
 
-http://stackoverflow.com/questions/5797661/replace-text-in-website-with-chrome-content-script-extension
+Now you don't need to build a 'what-if' machine to see what life would be like if
+you had built a Thinglonger -- it already exists! This Chrome extension wakes up
+on Demonoid.me results pages and adds a new event handler to all:
+
+http://www.demonoid.me/files/download/1617530/536721/
+
+style links. The new click() prevents the default action and instead downloads
+the torrent over AJAX into an ArrayBuffer (using a modified[1] version of jQuery
+that supports the "dataType: binary" directive). That ArrayBuffer is then base64
+encoded[2] for safe keeping into a variable and POSTed to an arbitrary server
+that listens for /rtorrent POST requests.
+
+Included in the repo is a simple Bottle server.py that listens for those requests
+and writes the torrent to the local filesystem. This can be used in conjunction
+with rtorrent's 'watch' folder to automatically start the torrent on a remote
+server after clicking the download link locally.
+
+[1] http://blog.vjeux.com/2011/javascript/jquery-binary-ajax.html
+[2] https://gist.github.com/958841
+
