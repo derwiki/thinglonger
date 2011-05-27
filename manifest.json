@@ -1,5 +1,5 @@
 {
-  "name": "Remote Torrentify",
+  "name": "Thinglonger",
   "version": "1.0",
   "permissions": [
     "tabs", "http://demonoid.me/*", "http://*/*"
@@ -12,9 +12,9 @@
     {
       "matches": ["http://www.demonoid.me/files/*"],
       "js": [
-        "jquery.min.js",
-        "jquery.base64.min.js",
-        "remote_torrentify.js"
+        "jquery-1.4.4-binary-ajax.js",
+        "base64ArrayBuffer.js",
+        "thinglonger.js"
       ],
       "run_at": "document_end"
     }

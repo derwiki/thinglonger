@@ -11,13 +11,18 @@ $("a[href^='" + torrentPrefix + "']").each(function(index, element) {
     var torrentFilename = detailsLink.innerHTML;
     console.log('Initiating remote download for: ' + torrentUrl + ' - ' + torrentFilename);
 
-    $.post(torrentUrl, function(data) {
-      var base64_data = $.base64.encode(data);
-      console.log('Torrent size: ', data.length, 'Encoded size: ', base64_data.length);
-      chrome.extension.sendRequest({
-        'torrent_data' : base64_data,
-        'torrent_filename': $.base64.encode(torrentFilename)
-      });
+    $.ajax({
+      // need special patched version of jQuery to support 'binary'
+      dataType: 'binary',
+      url: torrentUrl,
+      success: function(data) {
+        var base64_data = base64ArrayBuffer(data);
+        console.log('Encoded size: ', base64_data.length);
+        chrome.extension.sendRequest({
+          'torrent_data' : base64_data,
+          'torrent_filename': torrentFilename
+        });
+      }
     });
   });
 });
